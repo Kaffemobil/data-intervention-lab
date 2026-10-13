@@ -1,0 +1,30 @@
+{
+  "issued_at": "2026-08-24",
+  "primary_question": "Does observable logistics information improve future U.S. manufactured-goods import-price forecasts beyond strong price-history and broad import/fuel price controls?",
+  "primary_horizon_months": 3,
+  "target": "BLS Harmonized System manufactured import-price indexes; direct log price change",
+  "universe_rule": "HS2, chapter >=28, BLS series begin_year <=2004; fuels/primary commodity targets excluded",
+  "forecast_test_start": "2017-01",
+  "baseline_features": [
+    "own monthly price changes lags 0,1,2,3,6,12",
+    "own 3m and 12m changes",
+    "broad non-fuel import-price changes",
+    "HS27 fuel price changes",
+    "seasonal sin/cos"
+  ],
+  "confirmatory_logistics_features": [
+    "GSCPI lags 0-6",
+    "GSCPI 3m mean",
+    "GSCPI 3m change"
+  ],
+  "estimator": "standardized ridge regression; alpha tuned only on pre-2017 expanding folds then frozen",
+  "leakage_rule": "At origin t, training examples only if target_end <= t",
+  "uncertainty": "6-month moving-block bootstrap over calendar months with all categories kept together",
+  "success_rule": {
+    "primary_rrmse_max": 0.95,
+    "primary_ci_upper_lt": 1.0,
+    "ex_covid_rrmse_max": 0.98
+  },
+  "confirmatory_result": "FAIL",
+  "next_gate": "Granular Census product/country/port/mode/charges/weight + PortWatch exposure must beat both baseline and GSCPI on untouched data."
+}

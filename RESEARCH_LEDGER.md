@@ -28,3 +28,6 @@ The frozen 32-code training representation was applied without refitting to the 
 
 ## Next research question
 The most defensible next variable is actual vessel delay/dwell time rather than throughput. That experiment was designed but intentionally not included here until the source data are available and verified.
+
+## Reproducibility note
+The public VQ summary tables are regenerated directly by `analysis/vq_sampling_experiment.py`; `analysis/representation_shift_audit.py` then consumes those saved replicates. The invalidated pre-hierarchy Census script is retained separately under `analysis/rejected/` and is explicitly excluded from final results.

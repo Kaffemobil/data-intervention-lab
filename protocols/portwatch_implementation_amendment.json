@@ -1,0 +1,39 @@
+{
+  "study_id": "portwatch-ais-x-census-exposure-v1-2026-08-24",
+  "amendment_id": "implementation-details-before-price-outcome-join-2026-08-25",
+  "status": "frozen_before_joining_portwatch_features_to_price_residual_outcomes",
+  "reason": "The frozen protocol specified the economic features and success rules but not low-level missing-data, port-matching, and ridge-tuning mechanics.",
+  "portwatch_information_timing": "Use PortWatch month t for a forecast whose BLS price origin is month t. The BLS origin-month import-price observation is released during t+1, while PortWatch is updated weekly, so completed PortWatch month t is available by the forecast issue time. This remains pseudo-real-time because PortWatch historical revisions are not vintaged.",
+  "pressure_transform": "For each raw PortWatch metric, shock_t = -(log1p(metric_t) - log1p(metric_t-12)). Positive means weaker maritime activity than a year earlier.",
+  "lags": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "census_exposure": "2017-2018 average/summed vessel import value shares relative to each HS chapter's total vessel import value, fixed before PortWatch begins.",
+  "country_mapping": "Exact Census country-name mapping to the 14 frozen ISO3 origins.",
+  "us_port_mapping": "Deterministic manual aliases for known combined ports plus exact normalized-name matches. No unconstrained fuzzy match is accepted. Known wrong-state same-name matches are rejected.",
+  "missing_portwatch_months": "Never interpret a missing country/port observation as zero. Reweight over available shocks only when at least 80% of that product's matched fixed exposure is observed; preserve the magnitude of the product's matched fixed exposure rather than renormalizing to 100% of total imports.",
+  "route_feature": "For each fixed Census country-port route, route shock is the arithmetic mean of the corresponding origin export shock and US destination-port import shock. Aggregate using fixed route vessel-value shares.",
+  "model": "Pooled ridge residual correction of frozen GSCPI-model forecast errors. At each forecast origin and horizon, training rows are restricted to targets whose target_end <= current origin.",
+  "ridge_alpha_grid": [
+    0.01,
+    0.1,
+    1,
+    10,
+    100,
+    1000
+  ],
+  "ridge_tuning": "At each forecast origin, choose alpha by a blocked inner validation using the last 6 unique eligible training origins, fit on earlier origins, then refit on all eligible training rows. Require at least 12 unique eligible training origins before issuing a PortWatch-corrected forecast.",
+  "predictors": "Eight frozen PortWatch pressure features at lags 0-3 plus matched_route_exposure_coverage once.",
+  "primary_comparison": "Frozen GSCPI model M1 versus M1 plus PortWatch residual correction.",
+  "diagnostic_ablation": "Also compute an intercept-only rolling residual-bias correction to determine whether any apparent gain is merely generic forecast-bias correction rather than PortWatch information.",
+  "bootstrap": "Paired moving-block bootstrap over forecast-origin months, block length 6, preserving all products within a selected month; 5000 draws.",
+  "primary_success_rule_unchanged": {
+    "full_sample_rrmse_max": 0.95,
+    "full_sample_95ci_upper_below": 1.0,
+    "ex_covid_rrmse_max": 0.98
+  },
+  "data_quality_origin_rule": "Before joining to price outcomes, exclude forecast-origin months where fewer than 80% of the 18 products have complete PortWatch predictors. This is based only on PortWatch feature availability; it primarily removes 2020 months affected by downloader/API gaps."
+}

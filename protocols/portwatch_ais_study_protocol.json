@@ -1,0 +1,38 @@
+{
+  "study_id": "portwatch-ais-x-census-exposure-v1-2026-08-24",
+  "status": "frozen_before_portwatch_price-outcome-evaluation",
+  "primary_question": "Do upstream maritime activity anomalies from IMF PortWatch, weighted by fixed pre-PortWatch Census product exposure, reduce future BLS import-price forecast error beyond the frozen GSCPI baseline?",
+  "portwatch_start": "2019-01",
+  "primary_horizon_months": 3,
+  "secondary_horizons_months": [1, 6],
+  "price_universe": "same 18 BLS HS chapters used in prior pilot",
+  "baseline": "frozen prior GSCPI model forecasts; incremental residual-correction test",
+  "fixed_exposure_window": "2017-01 through 2018-12 Census vessel import value",
+  "origin_selection_rule": "rank origin countries by 2017-2018 vessel import value over the frozen 18-HS universe; include countries through the first country that brings cumulative exposure to >=85%",
+  "selected_origin_iso3": ["CHN","JPN","DEU","KOR","TWN","VNM","GBR","ITA","IND","THA","MEX","MYS","IDN","FRA"],
+  "selected_origin_coverage_approx": 0.850475,
+  "portwatch_variables": [
+    "export_container", "export_cargo", "portcalls_container", "portcalls_cargo",
+    "USA import_container", "USA import_cargo", "USA portcalls_container", "USA portcalls_cargo"
+  ],
+  "transformations": "monthly sums; causal YoY log1p changes; shortfall sign convention = negative growth becomes positive pressure",
+  "product_features": [
+    "origin_export_container_pressure",
+    "origin_export_cargo_pressure",
+    "origin_container_call_pressure",
+    "destination_import_container_pressure",
+    "destination_import_cargo_pressure",
+    "destination_container_call_pressure",
+    "route_container_pressure",
+    "route_cargo_pressure",
+    "matched_route_exposure_coverage"
+  ],
+  "anti_leakage": "Census exposure weights are fixed before PortWatch begins; no current-month Census flow is used in PortWatch features. Rolling training uses only residual targets realized by each forecast origin.",
+  "primary_success_rule": {
+    "full_sample_rrmse_max": 0.95,
+    "full_sample_95ci_upper_below": 1.0,
+    "ex_covid_rrmse_max": 0.98
+  },
+  "covid_definition": "2020-03 through 2022-12",
+  "notes": "PortWatch is revised historically; this is a pseudo-real-time historical test. A prospective immutable PortWatch vintage archive is required for production claims."
+}

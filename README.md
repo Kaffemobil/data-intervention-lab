@@ -37,20 +37,25 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Reproduce the representation experiment:
+Reproduce the hierarchy and representation experiments:
 
 ```bash
+python3 analysis/census_hierarchy_audit.py /path/to/census_network_data_bundle.zip
 python3 analysis/vq_sampling_experiment.py
 python3 analysis/representation_shift_audit.py
 ```
+
+The VQ scripts regenerate the checked-in derived tables used by the site. Earlier forecasting-stage scripts and data-acquisition code are retained under `analysis/study_archive/` and `analysis/acquisition/` for auditability.
 
 ## Repository structure
 
 - `index.html` — self-contained interactive research page, no JS dependencies.
 - `data/` — compact derived metrics and modeling table.
-- `analysis/` — reproducible hierarchy/QC and VQ sampling code.
+- `analysis/` — reproducible hierarchy/QC and VQ code, data-acquisition scripts, executed forecasting-stage scripts, and an explicitly rejected parser retained for provenance.
+- `protocols/` — frozen study rules and implementation amendments.
 - `RESEARCH_LEDGER.md` — what was frozen, invalidated, rejected, and why.
 - `DATA_CARD.md` — provenance, availability, limitations, and hashes.
+- `analysis/README.md` — code map and reproduction status for each script family.
 
 ## Scientific scope
 

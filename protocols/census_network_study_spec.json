@@ -1,0 +1,43 @@
+{
+  "version": "granular-network-v1-2026-08-24",
+  "status": "FROZEN_BEFORE_GRANULAR_OUTCOMES",
+  "primary_question": "Do product-specific logistics-network variables improve 3-month-ahead U.S. HS import-price forecasts beyond the same price/macro baseline plus aggregate GSCPI?",
+  "hs2_universe": [29,30,38,39,40,62,64,73,74,76,82,83,84,85,87,90,95,96],
+  "census_window": ["2010-01", "2026-06"],
+  "test_start_price_reference_month": "2017-01",
+  "primary_horizon_months": 3,
+  "secondary_horizons_months": [1,6],
+  "forecast_information_alignment": {
+    "forecast_issue": "end of month s+1",
+    "latest_BLS_price_reference_month": "s",
+    "latest_GSCPI_reference_month": "s",
+    "latest_Census_reference_month": "s-1 (conservative publication-lag rule)",
+    "target": "100*[log(P_{s+h})-log(P_s)]"
+  },
+  "models": {
+    "M0": "price history + broad ex-fuel import prices + fuel import prices + seasonality",
+    "M1": "M0 + aggregate GSCPI",
+    "M2": "M0 + granular Census network variables",
+    "M3": "M0 + GSCPI + granular Census network variables"
+  },
+  "primary_comparison": "M3 versus M1",
+  "network_feature_families": [
+    "product import-value growth",
+    "vessel and container shipping-weight growth",
+    "ocean/air/container modal shares and changes",
+    "country and port concentration (HHI/top share)",
+    "country and port rerouting/turnover versus 12 months earlier",
+    "product exposure to leave-one-product-out port/route flow shocks using pre-test exposure weights",
+    "coverage measures for network-shock exposures"
+  ],
+  "estimation": "standardized ridge, tuning restricted to pre-test information; identical forecast origins across models",
+  "leakage_rule": "At forecast origin, training examples only if their future BLS target is already released/known; Census features are lagged conservatively by publication availability.",
+  "uncertainty": "6-month moving-block bootstrap over calendar forecast origins, retaining all product categories together",
+  "primary_success_rule": {
+    "M3_vs_M1_RRMSE_max": 0.95,
+    "95pct_block_bootstrap_upper_lt": 1.0,
+    "ex_COVID_RRMSE_max": 0.98
+  },
+  "failure_interpretation": "If M3 does not materially and robustly beat M1, the granular-network forecasting premise is not supported at the predeclared commercial-relevance threshold.",
+  "important_limitation": "Census historical files/API expose current/revised history rather than complete vintage snapshots; retrospective tests remain pseudo-real-time even with conservative release lags. Prospective forecasts must be snapshotted immutably."
+}

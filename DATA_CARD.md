@@ -33,3 +33,8 @@ Each feature conceptually has both an `observation_date` and an `available_date`
 - The VQ experiment is a compact classical vector-quantization baseline (MiniBatch K-means), not a claim about frontier-scale learned tokenizers.
 - The future holdout is modest (165 product-month observations), so tiny RMSE differences are treated as descriptive rather than practically meaningful.
 - The representation-shift audit is exploratory and state-conditioned errors can be noisy when a code has few holdout observations.
+
+## Code and raw-data availability
+The public repository includes the executed data-acquisition and forecasting-stage scripts used in the study, plus compact derived tables sufficient to reproduce the hierarchy and representation experiments. Large raw-source bundles are not duplicated in GitHub; their SHA256 identifiers are recorded above and in `data/source_inventory.csv`.
+
+An early granular Census script is intentionally retained under `analysis/rejected/` because it documents the hierarchy error that invalidated that run. It is not a final-analysis script.
