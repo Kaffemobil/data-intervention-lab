@@ -1,0 +1,5 @@
+stage,signal,rrmse_3m,status,note,rmse_change_pct
+Aggregate pressure,NY Fed GSCPI,1.0423127773043706,rejected,One global supply-chain factor.,4.231277730437055
+Granular network,Census product × port × country,1.0244,rejected,Fixed network features did not improve baseline residuals.,2.4399999999999977
+Route topology,Census country → port routes,1.0115,rejected,True route edges; still no material incremental signal.,1.1500000000000066
+Upstream throughput,PortWatch AIS × fixed Census exposure,1.094004036906491,rejected,Physical maritime activity; strongest shrinkage selected repeatedly.,9.400403690649096

@@ -1,0 +1,21 @@
+{
+  "codebook_k": 32,
+  "n_train": 604,
+  "n_holdout": 165,
+  "ridge_alpha": 10000.0,
+  "train_active_codes": 32,
+  "holdout_active_codes": 17,
+  "holdout_code_coverage": 0.53125,
+  "train_effective_states": 25.075640409989784,
+  "holdout_effective_states": 8.185818059939209,
+  "js_divergence_bits": 0.3596187407748942,
+  "support_vs_holdout_rmse_spearman": -0.5003066544293187,
+  "support_error_n_active_states": 17,
+  "vq25_mean_delta_rmse_vs_random": -0.006627866603564289,
+  "vq25_bootstrap_mean_delta_ci95": [
+    -0.009763398697671772,
+    -0.003570076633089961
+  ],
+  "vq25_mean_relative_delta_pct": -0.24417933082540116,
+  "vq25_fraction_seeds_better": 0.59
+}

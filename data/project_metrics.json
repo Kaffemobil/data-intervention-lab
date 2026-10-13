@@ -1,0 +1,25 @@
+{
+  "raw_census_rows": 10770421,
+  "census_files": 306,
+  "hs_chapters": 18,
+  "ports_approx": 430,
+  "origin_country_codes": 235,
+  "vessel_value_2017_2018": 1305973952435.0,
+  "median_top_port_naive": 0.5,
+  "median_top_port_curated": 0.278736924959166,
+  "median_top_country_naive": 0.5,
+  "median_top_country_curated": 0.39544610339193065,
+  "gscpi_rrmse_3m": 1.0423127773043706,
+  "portwatch_rrmse_3m": 1.094004036906491,
+  "portwatch_ci_95": [
+    1.027,
+    1.187
+  ],
+  "vq_k": 32,
+  "vq_features": 32,
+  "vq_train_n": 604,
+  "vq_test_n": 165,
+  "vq_alpha": 10000,
+  "vq_full_rmse": 2.6532854615309014,
+  "vq_zero_rmse": 2.652546934519417
+}

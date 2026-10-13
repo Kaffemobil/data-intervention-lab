@@ -1,0 +1,5 @@
+source,role,period,local_artifact,sha256
+U.S. Census International Trade,Product × country × U.S. port × mode network,2010-01 to 2026-06,census_network_data_bundle.zip,c8399ca6d4bc040ffeffe79c38701568972d912ffd217eb117b7641fe070e39b
+BLS Import/Export Price Indexes,Product-level future price target,historical monthly,pilot reproducibility package,142395cb9648d0b3399f25313e2653863a7bb3d4571da17725e71e92e9e3e8f5
+NY Fed GSCPI,Aggregate supply-chain benchmark,monthly,pilot reproducibility package,142395cb9648d0b3399f25313e2653863a7bb3d4571da17725e71e92e9e3e8f5
+IMF PortWatch,AIS-derived port calls / maritime throughput,2019 onward,portwatch_monthly_data_bundle.zip,e7909d6ffcbf4a635980c8709ee757605eceefa8e945aa13bdb92d75c1db1f75
